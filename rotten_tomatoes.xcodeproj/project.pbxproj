@@ -15,6 +15,7 @@
 		C08BFD141ADF6D7500B04225 /* rotten_tomatoesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08BFD131ADF6D7500B04225 /* rotten_tomatoesTests.swift */; };
 		C08BFD1E1ADF6FFF00B04225 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08BFD1D1ADF6FFF00B04225 /* MoviesViewController.swift */; };
 		C08BFD241ADF801A00B04225 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08BFD231ADF801A00B04225 /* MovieCell.swift */; };
+		C0F473581AE005F3004B5F39 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F473571AE005F3004B5F39 /* MovieDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		C08BFD131ADF6D7500B04225 /* rotten_tomatoesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rotten_tomatoesTests.swift; sourceTree = "<group>"; };
 		C08BFD1D1ADF6FFF00B04225 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		C08BFD231ADF801A00B04225 /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		C0F473571AE005F3004B5F39 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				C08BFD1D1ADF6FFF00B04225 /* MoviesViewController.swift */,
+				C0F473571AE005F3004B5F39 /* MovieDetailsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0F473581AE005F3004B5F39 /* MovieDetailsViewController.swift in Sources */,
 				C08BFCFE1ADF6D7500B04225 /* AppDelegate.swift in Sources */,
 				C08BFD1E1ADF6FFF00B04225 /* MoviesViewController.swift in Sources */,
 				C08BFD241ADF801A00B04225 /* MovieCell.swift in Sources */,
