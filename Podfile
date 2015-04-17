@@ -2,8 +2,8 @@
 # platform :ios, '6.0'
 
 target 'rotten_tomatoes' do
-    pod "AFNetworking"
-
+    pod 'AFNetworking'
+    pod 'SVProgressHUD'
 end
 
 target 'rotten_tomatoesTests' do
