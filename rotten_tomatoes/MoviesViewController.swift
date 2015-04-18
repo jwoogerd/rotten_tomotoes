@@ -15,10 +15,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
     var movies: [NSDictionary]?
     var refreshControl: UIRefreshControl!
-    let refreshDelay: Double = 3  // number of seconds to delay on refresh
+    let refreshDelay: Double = 1  // number of seconds to delay on refresh
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        networkErrorView.hidden = true
         
         SVProgressHUD.show()
         
@@ -38,7 +39,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func getMovies() {
-        // let apiKey = "73d3thfzehtqt6y8mkxpgd3j"
         let apiKey = "dagqdghwaq3e3mxyrp7kmmj5"
         let url = NSURL(string: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=" + apiKey)!
         let request = NSURLRequest(URL: url)
@@ -48,9 +48,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSDictionary
                 if let json = json {
                     self.movies = json["movies"] as? [NSDictionary]
+                    self.networkErrorView.hidden = true
                     self.tableView.reloadData()
                 }
             } else {
+                self.networkErrorView.hidden = false
                 self.tableView.insertSubview(self.networkErrorView!, atIndex: -1)
             }
             SVProgressHUD.dismiss()
