@@ -22,16 +22,20 @@ class MovieDetailsViewController: UIViewController {
         titleLabel.text = movie["title"] as? String
         synopsisLabel.text = movie["synopsis"] as? String
 
+        // load low res image first
+        var url = NSURL(string: movie.valueForKeyPath("posters.thumbnail") as! String)!
+        posterImageView.setImageWithURL(url)
+
         var url_string = movie.valueForKeyPath("posters.thumbnail") as! String
         let range = url_string.rangeOfString(".*cloudfront.net/",
             options: .RegularExpressionSearch)
-        
+
         if let range = range {
             url_string = url_string.stringByReplacingCharactersInRange(range,
                 withString: "https://content6.flixster.com/")
            }
        
-        let url = NSURL(string: url_string)!
+        url = NSURL(string: url_string)!
         posterImageView.setImageWithURL(url)
     }
 

@@ -16,18 +16,25 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     var movies: [NSDictionary]?
     var refreshControl: UIRefreshControl!
     let refreshDelay: Double = 1  // number of seconds to delay on refresh
+    var distribution_type = "movies/box_office"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        networkErrorView.hidden = true
         
+        // customize navigation bar
+        var nav = self.navigationController?.navigationBar
+        nav?.barTintColor = UIColor.blackColor()
+        nav?.tintColor = UIColor.yellowColor()
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.yellowColor()]
+
+        networkErrorView.hidden = true
         SVProgressHUD.show()
         
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
 
-        self.getMovies()
+        self.getMovies(self.distribution_type)
 
         tableView.dataSource = self
         tableView.delegate = self
@@ -38,9 +45,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-    func getMovies() {
+    func getMovies(type: String) {
         let apiKey = "dagqdghwaq3e3mxyrp7kmmj5"
-        let url = NSURL(string: "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=" + apiKey)!
+        let url = NSURL(string: "http://api.rottentomatoes.com/api/public/v1.0/lists/" + type + ".json?apikey=" + apiKey)!
         let request = NSURLRequest(URL: url)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {
             (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
@@ -53,7 +60,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 }
             } else {
                 self.networkErrorView.hidden = false
-                self.tableView.insertSubview(self.networkErrorView!, atIndex: -1)
+                self.networkErrorView.frame.origin.y = self.networkErrorView.frame.height
             }
             SVProgressHUD.dismiss()
         }
@@ -70,7 +77,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func onRefresh() {
         delay(refreshDelay, closure: {
-            self.getMovies()
+            self.getMovies(self.distribution_type)
             self.refreshControl.endRefreshing()
         })
     }
@@ -98,6 +105,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
 
+    @IBAction func onBoxOfficeButtonPressed(sender: AnyObject) {
+        self.distribution_type = "movies/box_office"
+        self.getMovies(self.distribution_type)
+    }
+
+    @IBAction func onDVDsButtonPressed(sender: AnyObject) {
+        self.distribution_type = "dvds/top_rentals"
+        self.getMovies(self.distribution_type)
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let cell = sender as! UITableViewCell
         let indexPath = tableView.indexPathForCell(cell)!

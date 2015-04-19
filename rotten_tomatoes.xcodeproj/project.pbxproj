@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		05F380A87C5D6C6A412FE0B3 /* libPods-rotten_tomatoes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42E07F3FCF77CF2998493132 /* libPods-rotten_tomatoes.a */; };
+		C04D028B1AE34ABD00476A69 /* iconmonstr-error-4-icon-32.png in Resources */ = {isa = PBXBuildFile; fileRef = C04D028A1AE34ABD00476A69 /* iconmonstr-error-4-icon-32.png */; };
 		C08BFCFE1ADF6D7500B04225 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08BFCFD1ADF6D7500B04225 /* AppDelegate.swift */; };
 		C08BFD031ADF6D7500B04225 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C08BFD011ADF6D7500B04225 /* Main.storyboard */; };
 		C08BFD051ADF6D7500B04225 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C08BFD041ADF6D7500B04225 /* Images.xcassets */; };
@@ -33,6 +34,7 @@
 		5499AFCD595FB193BEDD3F80 /* Pods-rotten_tomatoes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rotten_tomatoes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rotten_tomatoes/Pods-rotten_tomatoes.debug.xcconfig"; sourceTree = "<group>"; };
 		7711FC946AC918D9986E3DCD /* Pods-rotten_tomatoes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rotten_tomatoes.release.xcconfig"; path = "Pods/Target Support Files/Pods-rotten_tomatoes/Pods-rotten_tomatoes.release.xcconfig"; sourceTree = "<group>"; };
 		C017FFA11ADF838F0014AE2E /* rotten_tomatoes-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "rotten_tomatoes-Bridging-Header.h"; sourceTree = "<group>"; };
+		C04D028A1AE34ABD00476A69 /* iconmonstr-error-4-icon-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iconmonstr-error-4-icon-32.png"; path = "../../../iconmonstr-error-4-icon-32.png"; sourceTree = "<group>"; };
 		C08BFCF81ADF6D7500B04225 /* rotten_tomatoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rotten_tomatoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C08BFCFC1ADF6D7500B04225 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C08BFCFD1ADF6D7500B04225 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C04D02891AE34A7B00476A69 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C04D028A1AE34ABD00476A69 /* iconmonstr-error-4-icon-32.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		C08BFCEF1ADF6D7500B04225 = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +116,7 @@
 		C08BFCFA1ADF6D7500B04225 /* rotten_tomatoes */ = {
 			isa = PBXGroup;
 			children = (
+				C04D02891AE34A7B00476A69 /* Images */,
 				C08BFD201ADF7F7100B04225 /* Views */,
 				C08BFD1F1ADF700700B04225 /* View Controllers */,
 				C08BFCFD1ADF6D7500B04225 /* AppDelegate.swift */,
@@ -243,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C08BFD031ADF6D7500B04225 /* Main.storyboard in Resources */,
+				C04D028B1AE34ABD00476A69 /* iconmonstr-error-4-icon-32.png in Resources */,
 				C08BFD081ADF6D7500B04225 /* LaunchScreen.xib in Resources */,
 				C08BFD051ADF6D7500B04225 /* Images.xcassets in Resources */,
 			);
