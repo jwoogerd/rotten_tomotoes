@@ -12,15 +12,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var networkErrorView: UIView!
+    @IBOutlet weak var distributionTypeControl: UISegmentedControl!
 
     var movies: [NSDictionary]?
     var refreshControl: UIRefreshControl!
     let refreshDelay: Double = 1  // number of seconds to delay on refresh
-    var distribution_type = "movies/box_office"
+    let distributionTypes = ["movies/box_office",  "dvds/top_rentals"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // customize navigation bar
         var nav = self.navigationController?.navigationBar
         nav?.barTintColor = UIColor.blackColor()
@@ -29,25 +30,26 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
         networkErrorView.hidden = true
         SVProgressHUD.show()
-        
+
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
 
-        self.getMovies(self.distribution_type)
+        self.getMovies()
 
         tableView.dataSource = self
         tableView.delegate = self
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func getMovies(type: String) {
+
+    func getMovies() {
+        let distributionType = self.distributionTypes[distributionTypeControl.selectedSegmentIndex]
         let apiKey = "dagqdghwaq3e3mxyrp7kmmj5"
-        let url = NSURL(string: "http://api.rottentomatoes.com/api/public/v1.0/lists/" + type + ".json?apikey=" + apiKey)!
+        let url = NSURL(string: "http://api.rottentomatoes.com/api/public/v1.0/lists/" + distributionType + ".json?apikey=" + apiKey)!
         let request = NSURLRequest(URL: url)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {
             (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
@@ -65,7 +67,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             SVProgressHUD.dismiss()
         }
     }
-    
+
     func delay(delay:Double, closure:()->()) {
         dispatch_after(
             dispatch_time(
@@ -74,10 +76,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             ),
             dispatch_get_main_queue(), closure)
     }
-    
+
     func onRefresh() {
         delay(refreshDelay, closure: {
-            self.getMovies(self.distribution_type)
+            self.getMovies()
             self.refreshControl.endRefreshing()
         })
     }
@@ -89,11 +91,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             return 0
         }
     }
-    
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
         let movie = movies![indexPath.row]
@@ -105,16 +107,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
 
-    @IBAction func onBoxOfficeButtonPressed(sender: AnyObject) {
-        self.distribution_type = "movies/box_office"
-        self.getMovies(self.distribution_type)
+    @IBAction func onSegmentedControlValueChanged(sender: AnyObject) {
+        self.getMovies()
     }
 
-    @IBAction func onDVDsButtonPressed(sender: AnyObject) {
-        self.distribution_type = "dvds/top_rentals"
-        self.getMovies(self.distribution_type)
-    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let cell = sender as! UITableViewCell
         let indexPath = tableView.indexPathForCell(cell)!
